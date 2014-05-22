@@ -8,7 +8,7 @@
     xmlns:common="using:picture_display.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" SizeChanged="MainPage_SizeChanged">
 
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
@@ -54,7 +54,7 @@
             <TextBlock x:Name="pageTitle" Text="Image Share" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40" SelectionChanged="pageTitle_SelectionChanged"/>
         </Grid>
-        <Button x:Name="UploadButton" Content="Upload" HorizontalAlignment="Left" Margin="1123,20,0,0" VerticalAlignment="Top" Click="UploadButton_Click" FontWeight="Normal" Width="200" Height="100" FontSize="48"/>
+        <Button x:Name="UploadButton" Content="Upload" HorizontalAlignment="Left" Margin="414,27,0,0" VerticalAlignment="Top" Click="UploadButton_Click" FontWeight="Normal" Width="218" Height="100" FontSize="56" RenderTransformOrigin="0.628,0.49"/>
         <TextBlock x:Name="Picture_Name" Grid.Row="1" TextWrapping="Wrap" Text="{Binding DisplayName}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <StackPanel x:Name="imagePanel" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
             <Border BorderBrush="Gray" BorderThickness="1" Background="Gray">
@@ -68,4 +68,35 @@
         <TextBlock x:Name="Date_Completed" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Date Created:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="119,10,0,0"/>
         <TextBlock HorizontalAlignment="Left" Margin="294,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding DateCreated.Date}" VerticalAlignment="Top" FontSize="24" Width="370" FontStyle="Italic"/>
     </Grid>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState x:Name="DefaultLayout">
+                <Storyboard>
+                </Storyboard>
+            </VisualState>
+
+            <VisualState x:Name="Portrait">
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames 
+                            Storyboard.TargetProperty="(StackPanel.Orientation)" 
+                            Storyboard.TargetName="imagePanel">
+                        <DiscreteObjectKeyFrame KeyTime="0">
+                            <DiscreteObjectKeyFrame.Value>
+                                <Orientation>Vertical</Orientation>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames 
+                            Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                            Storyboard.TargetName="imagePanel">
+                        <DiscreteObjectKeyFrame KeyTime="0">
+                            <DiscreteObjectKeyFrame.Value>
+                                <Thickness>0,0,20,0</Thickness>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 </Page>
