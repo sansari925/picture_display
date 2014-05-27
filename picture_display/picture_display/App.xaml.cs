@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite;
+using picture_display.Tables;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -24,6 +26,7 @@ namespace picture_display
     /// </summary>
     sealed partial class App : Application
     {
+        public static string DBPath = string.Empty;
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -67,6 +70,18 @@ namespace picture_display
                     //TODO: Load state from previously suspended application
                 }
 
+                // Get a reference to the SQLite database
+                DBPath = Path.Combine(
+                    Windows.Storage.ApplicationData.Current.LocalFolder.Path, "picture_display.s3db");
+                // Initialize the database if necessary
+                using (var db = new SQLite.SQLiteConnection(DBPath))
+                {
+                    // Create the tables if they don't exist
+                    db.CreateTable<TableImages>();
+                    //db.CreateTable<Project>();
+                }
+                SaveData();
+
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -105,5 +120,25 @@ namespace picture_display
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        public void SaveData()
+        {
+            using (var db = new SQLite.SQLiteConnection(DBPath))
+            {
+                // Empty the TableImages tables 
+                //db.DeleteAll<TableImages>();
+
+                //Add New Image
+                var newImage = new TableImages()
+                
+                {
+                    //ID = newImage.Id,
+                    imagePath = "c:\\My Images",
+                    imageName = "testImage.jpg",
+                    imageDate = "6/6/2014",
+                    //binaryLargeImage = "Windows Store app"
+                };
+                db.Insert(newImage);
     }
+    }}
 }

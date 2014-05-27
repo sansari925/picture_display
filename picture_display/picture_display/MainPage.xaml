@@ -67,6 +67,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="294,41,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path}" VerticalAlignment="Top" FontSize="24" Width="466" FontStyle="Italic"/>
         <TextBlock x:Name="Date_Completed" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Date Created:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="119,10,0,0"/>
         <TextBlock HorizontalAlignment="Left" Margin="294,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding DateCreated.Date}" VerticalAlignment="Top" FontSize="24" Width="370" FontStyle="Italic"/>
+        <Button x:Name="Save_To_Database" Content="Save To Database" HorizontalAlignment="Left" Margin="1051,80,0,0" Grid.Row="4" VerticalAlignment="Top" Width="277" Click="Save_To_Database_Click"/>
+        <Button x:Name="Retrieve_From_Database" Content="Retrieve From Database" HorizontalAlignment="Left" Margin="1051,227,0,0" Grid.Row="4" VerticalAlignment="Top" Width="277" Click="Retrieve_From_Database_Click"/>
     </Grid>
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup>

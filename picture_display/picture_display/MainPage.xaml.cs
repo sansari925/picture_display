@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using picture_display.Tables;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -22,7 +23,9 @@ namespace picture_display
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class MainPage : Page
+        
     {
+        //public static string DBPath = string.Empty;
         private string mruToken = null;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -204,6 +207,31 @@ namespace picture_display
             {
                 VisualStateManager.GoToState(this, "DefaultLayout", true);
             }
+        }
+
+        private void Save_To_Database_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Call SaveData
+            //SaveData = new App.SaveData
+            //string DBPath = string.Empty;
+            //var db = new SQLite.SQLiteConnection(DBPath);
+            //var newImage = new TableImages()
+
+            //{
+                //ID = newImage.Id,
+            	//imagePath = "c:\\My Images",
+            	//imageName = "testImage.jpg",
+            	//imageDate = "6/6/2014",
+            	//binaryLargeImage = "Windows Store app"
+            //}//;
+            //db.Insert(newImage);
+            
+        }
+
+        private void Retrieve_From_Database_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
